@@ -4,7 +4,7 @@ import {expenseFormValidate} from '../../utils/ValidateUtil'
 import { randomString } from '../../utils/RandomStringGenerator'
 
 const ExpenseForm = (props) => {
-
+        
         // const [newExpenseFormInput,setNewExpenseFormInput] = useState({title:"",amount:"",date:""});
 
         const [titleInput,setTitleInput] = useState("");
