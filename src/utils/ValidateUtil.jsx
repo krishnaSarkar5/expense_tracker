@@ -1,6 +1,6 @@
 
  const stringValidate=(value)=>{
-    if(value===""){
+    if(value==="" || value.trim().length<3){
         return false;
     }
         
@@ -21,15 +21,15 @@ export const expenseFormValidate=(expense)=>{
         let errorObject = {};
 
         if(!numberValidate(expense?.amount)){
-            errorObject["amount"]="Enter Amount";
+            errorObject["amount"]="Enter valid Amount";
         }
 
         if(!stringValidate(expense?.title)){
-            errorObject["title"]="Enter Title";
+            errorObject["title"]="Enter valid Title";
         }
 
         if(!stringValidate(expense?.date)){
-            errorObject["date"]="Enter date";
+            errorObject["date"]="Enter valid date";
         }
 
         return errorObject;
