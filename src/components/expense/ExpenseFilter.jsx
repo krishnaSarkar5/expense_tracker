@@ -13,6 +13,7 @@ const ExpenseFilter = (props) => {
             <select value={props.selected} onChange={dropdownChangeHandler}>
               <option value='select year'>select year</option>
               {props.years?.map((year)=>{return<option value={year}>{year}</option> })}
+              <option value="2005">2005</option>
             </select>
           </div>
         </div>
