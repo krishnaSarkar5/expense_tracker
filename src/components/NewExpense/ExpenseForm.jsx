@@ -7,6 +7,8 @@ const ExpenseForm = (props) => {
 
         // const [newExpenseFormInput,setNewExpenseFormInput] = useState({title:"",amount:"",date:""});
 
+        const [openForm,setOpenForm] = useState(false)
+
         const [titleInput,setTitleInput] = useState("");
         const [amountInput,setAmountInput] = useState("");
         const [dateInput,setDateInput] = useState("");
@@ -72,37 +74,98 @@ const ExpenseForm = (props) => {
             setAmountInput("");
             setDateInput("");
         }
+
+
+        const handleFormOpen = ()=>{
+            setOpenForm(true);
+        }
+
+        const handleCloseForm = ()=>{
+            setOpenForm(false);
+        }
+
+        let container ;
+
+        if(openForm){
+            container = <form>
+            <div className='new-expense__controls'>
+    
+                {/* inputs  */}
+                <div className='new-expense__control'>
+                    <label >title</label>
+                    <input type='text' value={titleInput} onChange={titleChangeHandle}/>
+                    <p style={{color:"red",fontSize:"15px"}}>{error.title}</p>
+                </div>
+              
+                <div className='new-expense__control'>
+                    <label >Amount</label>
+                    <input type='number' min='0.01' step='0.01' value={amountInput} onChange={amountChangeHandle}/>
+                    <p style={{color:"red",fontSize:"15px"}}>{error?.amount}</p>
+                </div>
+    
+                <div className='new-expense__control'>
+                    <label >Date</label>
+                    <input type='date' min='2019-01-01' max='2023-12-31' value={dateInput} onChange={dateChangeHandle}/>
+                    <p style={{color:"red",fontSize:"15px"}}>{error?.date}</p>
+                </div>
+    
+            </div>
+    
+          
+                {/* submit button  */}
+                <div className='new-expense__actions'>
+                    <button  onClick={handleCloseForm}>Cancel</button>
+                    <button type='submit' onClick={handleSubmit}>Add Expense</button>
+                </div>
+           
+        </form>
+        }else{
+            container =  <button type='submit' onClick={handleFormOpen}>Add New Expense</button>
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     
   return (
-    <form>
-        <div className='new-expense__controls'>
+    // <form>
+    //     <div className='new-expense__controls'>
 
-            {/* inputs  */}
-            <div className='new-expense__control'>
-                <label >title</label>
-                <input type='text' value={titleInput} onChange={titleChangeHandle}/>
-                <p style={{color:"red",fontSize:"15px"}}>{error.title}</p>
-            </div>
+    //         {/* inputs  */}
+    //         <div className='new-expense__control'>
+    //             <label >title</label>
+    //             <input type='text' value={titleInput} onChange={titleChangeHandle}/>
+    //             <p style={{color:"red",fontSize:"15px"}}>{error.title}</p>
+    //         </div>
           
-            <div className='new-expense__control'>
-                <label >Amount</label>
-                <input type='number' min='0.01' step='0.01' value={amountInput} onChange={amountChangeHandle}/>
-                <p style={{color:"red",fontSize:"15px"}}>{error?.amount}</p>
-            </div>
+    //         <div className='new-expense__control'>
+    //             <label >Amount</label>
+    //             <input type='number' min='0.01' step='0.01' value={amountInput} onChange={amountChangeHandle}/>
+    //             <p style={{color:"red",fontSize:"15px"}}>{error?.amount}</p>
+    //         </div>
 
-            <div className='new-expense__control'>
-                <label >Date</label>
-                <input type='date' min='2019-01-01' max='2023-12-31' value={dateInput} onChange={dateChangeHandle}/>
-                <p style={{color:"red",fontSize:"15px"}}>{error?.date}</p>
-            </div>
+    //         <div className='new-expense__control'>
+    //             <label >Date</label>
+    //             <input type='date' min='2019-01-01' max='2023-12-31' value={dateInput} onChange={dateChangeHandle}/>
+    //             <p style={{color:"red",fontSize:"15px"}}>{error?.date}</p>
+    //         </div>
 
-        </div>
+    //     </div>
 
-        {/* submit button  */}
-        <div className='new-expense__actions'>
-            <button type='submit' onClick={handleSubmit}>Add Expense</button>
-        </div>
-    </form>
+    //     {/* submit button  */}
+    //     <div className='new-expense__actions'>
+    //         <button type='submit' onClick={handleSubmit}>Add Expense</button>
+    //     </div>
+    // </form>
+    <>{container}</>
     
   )
 }
